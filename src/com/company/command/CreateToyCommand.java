@@ -3,6 +3,9 @@ package com.company.command;
 import com.company.exception.UnknownToyTypeException;
 import com.company.factory.ToyProductFactory;
 import com.company.product.*;
+import com.company.singleton.CommandsSingleton;
+import com.company.singleton.ProductsSingleton;
+import com.company.singleton.ScannerSingleton;
 
 import java.util.Scanner;
 
@@ -10,7 +13,7 @@ public class CreateToyCommand implements Command {
     private ToyProduct toyProduct;
 
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = ScannerSingleton.getInstance().getScanner();
         System.out.println("Enter toy type (ro=Robot/rc=Remote Control Car):");
         String toyType = scanner.nextLine();
 
@@ -18,18 +21,18 @@ public class CreateToyCommand implements Command {
     }
 
     public void undo() {
-        if (Products.contains(toyProduct))
-            Products.removeProduct(toyProduct);
+        if (ProductsSingleton.getInstance().contains(toyProduct))
+            ProductsSingleton.getInstance().removeProduct(toyProduct);
         else
-            Products.addProduct(toyProduct);
+            ProductsSingleton.getInstance().addProduct(toyProduct);
     }
 
     private void createToyByType(String toyType) {
         ToyProductFactory toyFactory = new ToyProductFactory();
         try {
             toyProduct = toyFactory.getToyProduct(toyType);
-            Products.addProduct(toyProduct);
-            CommandStacks.pushUndoStack(this);
+            ProductsSingleton.getInstance().addProduct(toyProduct);
+            CommandsSingleton.getInstance().pushUndoStack(this);
             System.out.println("New toy product record created.");
             System.out.println();
         } catch (UnknownToyTypeException ex) {

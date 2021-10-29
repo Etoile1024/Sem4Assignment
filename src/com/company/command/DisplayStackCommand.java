@@ -1,10 +1,12 @@
 package com.company.command;
 
+import com.company.singleton.CommandsSingleton;
+
 public class DisplayStackCommand implements Command {
     public void execute() {
         System.out.println();
         System.out.println("Undo List:");
-        var undoStack = CommandStacks.getUndoStack();
+        var undoStack = CommandsSingleton.getInstance().getUndoStack();
         if(undoStack.isEmpty())
             System.out.println("Empty");
         else {
@@ -14,7 +16,7 @@ public class DisplayStackCommand implements Command {
 
         System.out.println();
         System.out.println("Redo List:");
-        var redoStack = CommandStacks.getRedoStack();
+        var redoStack = CommandsSingleton.getInstance().getRedoStack();
         if(redoStack.isEmpty())
             System.out.println("Empty");
         else {

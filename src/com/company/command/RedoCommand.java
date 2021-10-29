@@ -1,16 +1,19 @@
 package com.company.command;
 
+import com.company.singleton.CommandsSingleton;
+
+import java.util.EmptyStackException;
+
 public class RedoCommand implements Command {
     public void execute() {
-        var redoStack = CommandStacks.getRedoStack();
-        if(!redoStack.isEmpty()) {
-            var cmd = redoStack.pop();
-            cmd.undo();
-            CommandStacks.pushUndoStack(cmd);
+        try {
+            CommandsSingleton.getInstance().executeRedo();
             System.out.println("Redo completed.");
-        } else
-            System.out.println("Nothing to redo!");
-        System.out.println();
+        } catch (EmptyStackException ex) {
+            System.out.println("Nothing to redo.");
+        } finally {
+            System.out.println();
+        }
     }
 
     public void undo() {

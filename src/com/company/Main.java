@@ -3,6 +3,7 @@ package com.company;
 import com.company.command.*;
 import com.company.exception.UnknownCommandException;
 import com.company.factory.CommandFactory;
+import com.company.singleton.ScannerSingleton;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = ScannerSingleton.getInstance().getScanner();
         CommandFactory cmdFactory = new CommandFactory();
         while (true) {
             help();

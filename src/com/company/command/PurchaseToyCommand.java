@@ -2,8 +2,10 @@ package com.company.command;
 
 import com.company.memento.Memento;
 import com.company.memento.PurchaseToyMemento;
-import com.company.product.Products;
 import com.company.product.ToyProduct;
+import com.company.singleton.CommandsSingleton;
+import com.company.singleton.ProductsSingleton;
+import com.company.singleton.ScannerSingleton;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -16,13 +18,13 @@ public class PurchaseToyCommand implements Command {
     private double cost;
 
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = ScannerSingleton.getInstance().getScanner();
         String input = null;
         try {
             System.out.println("Enter code:");
             input = scanner.nextLine();
             id = Integer.parseInt(input);
-            toyProduct = Products.getProductById(id);
+            toyProduct = ProductsSingleton.getInstance().getProductById(id);
 
             System.out.println("Quantity to be purchased:");
             input = scanner.nextLine();
@@ -40,7 +42,7 @@ public class PurchaseToyCommand implements Command {
             System.out.println("Purchased " + qty + " boxes of " + toyProduct.getName() + ". Current quantity is " + toyProduct.getQty() + ". Current cost is $" + toyProduct.getCost() + ". Price is $" + toyProduct.getPrice() + ".");
             System.out.println();
 
-            CommandStacks.pushUndoStack(this);
+            CommandsSingleton.getInstance().pushUndoStack(this);
 
         } catch (NoSuchElementException ex) {
             System.out.println("Can't find product, please input again!");

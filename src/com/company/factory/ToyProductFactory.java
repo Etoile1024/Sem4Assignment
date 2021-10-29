@@ -1,16 +1,16 @@
 package com.company.factory;
 
 import com.company.exception.UnknownToyTypeException;
-import com.company.product.Products;
 import com.company.product.RemoteControlCar;
 import com.company.product.Robot;
 import com.company.product.ToyProduct;
+import com.company.singleton.ScannerSingleton;
 
 import java.util.Scanner;
 
 public class ToyProductFactory {
     public ToyProduct getToyProduct(String toyType) throws UnknownToyTypeException {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = ScannerSingleton.getInstance().getScanner();
         String input;
         int id;
         String name;

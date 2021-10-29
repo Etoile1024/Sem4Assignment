@@ -1,16 +1,19 @@
 package com.company.command;
 
+import com.company.singleton.CommandsSingleton;
+
+import java.util.EmptyStackException;
+
 public class UndoCommand implements Command {
     public void execute() {
-        var undoStack = CommandStacks.getUndoStack();
-        if(!undoStack.isEmpty()) {
-            var cmd = undoStack.pop();
-            cmd.undo();
-            CommandStacks.pushRedoStack(cmd);
+        try {
+            CommandsSingleton.getInstance().executeUndo();
             System.out.println("Undo completed.");
-        } else
-            System.out.println("Nothing to undo!");
-        System.out.println();
+        } catch (EmptyStackException ex) {
+            System.out.println("Nothing to undo.");
+        } finally {
+            System.out.println();
+        }
     }
 
     public void undo() {
