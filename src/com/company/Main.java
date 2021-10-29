@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.command.*;
+import com.company.exception.UnknownCommandException;
+import com.company.factory.CommandFactory;
 
 import java.util.*;
 
@@ -9,44 +11,18 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Scanner scanner = new Scanner(System.in);
+        CommandFactory cmdFactory = new CommandFactory();
         while (true) {
             help();
-            String input = scanner.nextLine();
-            boolean recvCmd = true;
-            Command cmd = null;
-            switch (input) {
-                default:
-                    System.out.println("Incorrect command!");
-                    recvCmd = false;
-                    break;
-                case "c":
-                    cmd = new CreateToyCommand();
-                    break;
-                case "d":
-                    cmd = new DisplayToyCommand();
-                    break;
-                case "p":
-                    cmd = new PurchaseToyCommand();
-                    break;
-                case "s":
-                    cmd = new SellToyCommand();
-                    break;
-                case "l":
-                    cmd = new DisplayStackCommand();
-                    break;
-                case "u":
-                    cmd = new UndoCommand();
-                    break;
-                case "r":
-                    cmd = new RedoCommand();
-                    break;
-                case "x":
-                    cmd = new ExitCommand();
-                    break;
-
-            }
-            if (recvCmd)
+            try {
+                String input = scanner.nextLine();
+                Command cmd = cmdFactory.getCommand(input);
                 cmd.execute();
+            } catch (UnknownCommandException ex) {
+                System.out.println("Invalid command!");
+                System.out.println();
+            }
+
         }
 
     }
