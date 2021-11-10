@@ -20,4 +20,9 @@ public class RemoteControlCar extends ToyProduct {
         String result = "ID: " + getProductID() + "\r\nName: " + getName() + "\r\nQuantity: " + getQty() + "\r\nMaximum Speed(km/hr): " + getMaxSpeed() + "\r\nCost($): " + getCost() + "\r\nPrice($): " + getPrice();
         return result;
     }
+
+    public String showDetails() {
+        String result = getProductID() + "   " + getName() + "  " + getQty() + "   " + getMaxSpeed() + "km/hr" + "   " + getCost() + "    " + getPrice();
+        return result;
+    }
 }

@@ -20,4 +20,9 @@ public class Robot extends ToyProduct {
         String result = "ID: " + getProductID() + "\r\nName: " + getName() + "\r\nQuantity: " + getQty() + "\r\nHeight(cm): " + getHeight() + "\r\nCost($): " + getCost() + "\r\nPrice($): " + getPrice();
         return result;
     }
+
+    public String showDetails() {
+        String result = getProductID() + "   " + getName() + "  " + getQty() + "   " + getHeight() + "cm" + "   " + getCost() + "    " + getPrice();
+        return result;
+    }
 }

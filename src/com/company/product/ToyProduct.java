@@ -51,4 +51,8 @@ public class ToyProduct {
     public String toString() {
         return null;
     }
+
+    public String showDetails() {
+        return null;
+    }
 }

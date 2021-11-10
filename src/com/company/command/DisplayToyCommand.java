@@ -18,6 +18,7 @@ public class DisplayToyCommand implements Command {
             System.out.println("Toy product information");
             System.out.println("ID  Name    Quantity    Other Info    Cost    Price");
             for (var toyProduct : ProductsSingleton.getInstance().getProductList()) {
+                /*
                 int id = toyProduct.getProductID();
                 String name = toyProduct.getName();
                 int qty = toyProduct.getQty();
@@ -27,8 +28,8 @@ public class DisplayToyCommand implements Command {
                 if (toyProduct instanceof RemoteControlCar)
                     otherInfo = ((RemoteControlCar)toyProduct).getMaxSpeed() + "km/hr";
                 double cost = toyProduct.getCost();
-                double price = toyProduct.getPrice();
-                System.out.println(id + "   " + name + "  " + qty + "   " + otherInfo + "   " + cost + "    " + price);
+                double price = toyProduct.getPrice();*/
+                System.out.println(toyProduct.showDetails());
             }
             System.out.println();
         } else {
