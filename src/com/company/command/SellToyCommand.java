@@ -44,7 +44,7 @@ public class SellToyCommand implements Command {
                 toyProduct.setQty(toyProduct.getQty() - qty);
                 toyProduct.setPrice(price);
 
-                System.out.println("Sold " + qty + " boxes of Z Gundam. Current quantity is " + toyProduct.getQty() + ". Selling price is $" + price + ".");
+                System.out.println("Sold " + qty + " boxes of " + toyProduct.getName() + ". Current quantity is " + toyProduct.getQty() + ". Selling price is $" + price + ".");
                 System.out.println();
 
                 CommandsSingleton.getInstance().pushUndoStack(this);

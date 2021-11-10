@@ -16,7 +16,7 @@ public class DisplayToyCommand implements Command {
         String input = scanner.nextLine();
         if (input.equals("*")) {
             System.out.println("Toy product information");
-            System.out.println("ID  Name    Quantity    Other   Info    Cost    Price");
+            System.out.println("ID  Name    Quantity    Other Info    Cost    Price");
             for (var toyProduct : ProductsSingleton.getInstance().getProductList()) {
                 int id = toyProduct.getProductID();
                 String name = toyProduct.getName();
