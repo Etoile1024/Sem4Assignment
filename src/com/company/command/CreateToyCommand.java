@@ -50,31 +50,21 @@ public class CreateToyCommand implements Command {
 
         switch (toyType) {
             case "ro":
-                System.out.println("Enter id:");
+                System.out.println("Enter id, name and height(cm):");
                 input = scanner.nextLine();
-                id = Integer.parseInt(input);
 
-                System.out.println("Enter name:");
-                input = scanner.nextLine();
-                name = input;
-
-                System.out.println("Enter height(cm):");
-                input = scanner.nextLine();
-                double height = Double.parseDouble(input);
+                id = Integer.parseInt(input.split(",")[0]);
+                name = input.split(",")[1];
+                double height = Double.parseDouble(input.split(",")[2]);
 
                 return new Robot(id, name, height);
             case "rc":
-                System.out.println("Enter id:");
+                System.out.println("Enter id, name and maximum speed(km/hr):");
                 input = scanner.nextLine();
-                id = Integer.parseInt(input);
 
-                System.out.println("Enter name:");
-                input = scanner.nextLine();
-                name = input;
-
-                System.out.println("Enter maximum speed(km/hr):");
-                input = scanner.nextLine();
-                double maxSpeed = Double.parseDouble(input);
+                id = Integer.parseInt(input.split(",")[0]);
+                name = input.split(",")[1];
+                double maxSpeed = Double.parseDouble(input.split(",")[2]);
 
                 return new RemoteControlCar(id, name, maxSpeed);
             default:
